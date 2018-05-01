@@ -1,17 +1,13 @@
 $(document).ready(function(){
 
-  // var alphabets = ['A','B','C','D', 'E', 'F','G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O','P','Q','R','S', 'T', 'U', 'V', 'W', 'X' , 'Y','Z']
-
-  // console.log(alphabets);
-
-// var counter = 0;
-// var spaces = 0;
-// var lives = 9;
+$("#start").click(function(){
+    newProblem()
+    document.getElementById('start').innerHTML = 're-start'
+});
 
 
 
 
-newProblem()
 
 var count = 0
 var wrong_score= 0
@@ -20,7 +16,7 @@ var second_number
 
 // picks random numbers and displays in DOM
 function newProblem(){
-
+  clearInterval(counter)
   function random(){   
     return  Math.floor((Math.random() * 10));
     }
@@ -28,8 +24,6 @@ function newProblem(){
     first_number = random()
     second_number = random()
 
-    console.log(first_number)
-    console.log(second_number)
     document.getElementById('equationToSolve').innerHTML = first_number + "X"  + second_number + '=';
 
     var count=0;
@@ -40,9 +34,9 @@ function newProblem(){
       count++;
       if (count == 6)
       {
-            wrong_score++
-            $('#loseScore').empty();
-            $('#loseScore').append(wrong_score);
+            $('#playTwo').animate({marginLeft: '+=100.5px'});
+            // $('#loseScore').empty();
+            // $('#loseScore').append(wrong_score);
          clearInterval(counter);
          return;
       }
@@ -54,10 +48,9 @@ function newProblem(){
 
 
 
-// $('#answerForm').submit(function() {
+// takes input and checks if answer is correct
   $( "#submit" ).click(function() {
-    // get all the inputs into an array.
-    // var $inputs = $('#myForm :input');
+
     var input = $("input").val();
     answer = parseInt(input)
     console.log(answer)
@@ -65,19 +58,21 @@ function newProblem(){
     console.log(second_number)
 
     if(parseInt(first_number) * parseInt(second_number) == answer){
+      $('#playOne').animate({marginLeft: '+=100.5px'});
+      
+      newProblem()
+
       console.log('correct')
     }else{
+      $('#playTwo').animate({marginLeft: '+=100.5px'});
       console.log('wrong')
     }
 
 });
 
-
-// console.log(counter)    
   
-// var hits = 0;
+  
 
-//create buttons with letter
 
 
 
