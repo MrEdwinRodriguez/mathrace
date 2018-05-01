@@ -6,45 +6,84 @@ $("#start").click(function(){
 });
 
 
+ // var count=0;
 
+ //    var counter=setInterval(function(){ myTimer() }, 1000);
 
+ //    function timer(){
+      
+ //      count++;
+ //      if (count == 6)
+ //      {
+ //          $('#playTwo').animate({marginLeft: '+=100.5px'});
+ //         clearInterval(counter);
+
+ //         return;
+ //      }
+ //      document.getElementById("timer").innerHTML=count + " secs";
+ //    }
+   
 
 var count = 0
 var wrong_score= 0
 var first_number 
 var second_number 
+var counter
+var timer
+
+
+
+// var timer = new Timer();
+// timer.start();
+// timer.addEventListener('secondsUpdated', function (e) {
+//     $('#basicUsage').html(timer.getTimeValues().toString());
+// });
 
 // picks random numbers and displays in DOM
 function newProblem(){
   clearInterval(counter)
   function random(){   
-    return  Math.floor((Math.random() * 10));
+    return  Math.floor((Math.random() * 0));
     }
 
     first_number = random()
     second_number = random()
 
     document.getElementById('equationToSolve').innerHTML = first_number + "X"  + second_number + '=';
+    
 
-    var count=0;
+    // timer = setTimeout(function(){ $('#playTwo').animate({marginLeft: '+=100.5px'}); }, 5000);
 
-    var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
+    timer = new Timer();
+    timer.start();
+    timer.addEventListener('secondsUpdated', function (e) {
+        $('#basicUsage').html(timer.getTimeValues().toString());
+    });
 
-    function timer(){
-      count++;
-      if (count == 6)
-      {
-            $('#playTwo').animate({marginLeft: '+=100.5px'});
-            // $('#loseScore').empty();
-            // $('#loseScore').append(wrong_score);
-         clearInterval(counter);
-         return;
-      }
+    // var count=0;
 
-      document.getElementById("timer").innerHTML=count + " secs";
-    }
+    // var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
+
+    // function timer(){
+
+    //   console.log('test')
+    //   console.log(count)
+    //   count++;
+    //   if (count == 6)
+    //   {
+    //     $('#playTwo').animate({marginLeft: '+=100.5px'});
+    //      clearInterval(counter);
+
+    //      return;
+    //   }
+    //   document.getElementById("timer").innerHTML=count + " secs";
+    // }
   
+
+
+
 }
+
 
 
 
@@ -59,12 +98,18 @@ function newProblem(){
 
     if(parseInt(first_number) * parseInt(second_number) == answer){
       $('#playOne').animate({marginLeft: '+=100.5px'});
-      
+      // count= 0
+      // clearTimeout(timer)
+      timer.reset()
+      // clearInterval(counter)      
       newProblem()
 
       console.log('correct')
     }else{
       $('#playTwo').animate({marginLeft: '+=100.5px'});
+      // clearInterval(counter)
+      // clearTimeout(timer)
+      newProblem()
       console.log('wrong')
     }
 
