@@ -1,1 +1,1 @@
-# mathrace
+# hangman
