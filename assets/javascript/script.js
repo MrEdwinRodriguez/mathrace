@@ -1,3 +1,5 @@
+
+
 $(document).ready(function(){
 
 $("#start").click(function(){
@@ -18,6 +20,8 @@ var first_number
 var second_number 
 var counter
 var timer
+var wins = 0
+var losses = 0
 
 // to use enter to submit
 $.fn.enterKey = function (fnc) {
@@ -61,26 +65,8 @@ function newProblem(){
 
     document.getElementById('equationToSolve').innerHTML = first_number + "X"  + second_number + '=';
     
-    // timer = new Timer();
-    // timer.start({countdown: true, startValues: {seconds: 5}});
-    // $('.values').html(timer.getTimeValues().toString());
-    // timer.addEventListener('secondsUpdated', function (e) {
-    //     $('.values').html(timer.getTimeValues().toString());
-    // });
-    // timer.addEventListener('targetAchieved', function (e) {
-    //     // $('#playTwo').animate({marginLeft: '+=100.5px'});
-    //     // timer.reset()
-    //     // wrongScore++ 
-    //     // console.log('hi')
-    //     // console.log('wrong: ' + wrongScore) 
-    //     // newProblem()
-    //     $('.values').html('TIMESUP!!');
-    // });
-       
  
 }
-
-
 
 
 // takes input and checks if answer is correct
@@ -106,19 +92,47 @@ function runnerLogic(){
       $('#playOne').animate({marginLeft: '+=100.5px'});
       // timer.reset()
       correctScore++ 
-      console.log('correct: ' + correctScore)   
-      newProblem()
+      console.log('correct: ' + correctScore)  
+      checkScore() 
+      // newProblem()
     }else{
       $('#playTwo').animate({marginLeft: '+=100.5px'});
     // timer.reset()
       wrongScore++ 
       console.log('wrong: ' + wrongScore) 
-      newProblem()
+      checkScore() 
+      // newProblem()
 
     }
 
 }
 
+function checkScore(){
+    if(correctScore == 15){
+        alert('you win this round')
+        correctScore = 0
+        wrongScore = 0
+        wins ++
+        timer.stop()
+        $('#winScore').empty();
+        $('#winScore').append(wins);
+        $('#playOne').animate({marginLeft: '0px'});
+        $('#playTwo').animate({marginLeft: '0px'}); 
+    }else if ( wrongScore == 15){
+        alert ('you lost this round')
+        correctScore = 0
+        wrongScore = 0
+        losses++
+        timer.stop()
+        $('#loseScore').empty();
+        $('#loseScore').append(losses);
+        $('#playOne').animate({marginLeft: '0px'});
+        $('#playTwo').animate({marginLeft: '0px'}); 
+    }else{
+        newProblem()
+        console.log('keep playing')
+    }
+}
 
 // $("#basicUsage").change(function(){
     // console.log('gereare')
