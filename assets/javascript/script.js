@@ -1,49 +1,59 @@
 $(document).ready(function(){
 
 $("#start").click(function(){
+    callTimer()
     newProblem()
     document.getElementById('start').innerHTML = 're-start'
+    // callTimer()
 });
 
 
- // var count=0;
 
- //    var counter=setInterval(function(){ myTimer() }, 1000);
-
- //    function timer(){
-      
- //      count++;
- //      if (count == 6)
- //      {
- //          $('#playTwo').animate({marginLeft: '+=100.5px'});
- //         clearInterval(counter);
-
- //         return;
- //      }
- //      document.getElementById("timer").innerHTML=count + " secs";
- //    }
    
 
 var count = 0
-var wrong_score= 0
+var correctScore = 0
+var wrongScore= 0
 var first_number 
 var second_number 
 var counter
 var timer
 
+// to use enter to submit
+$.fn.enterKey = function (fnc) {
+    return this.each(function () {
+        $(this).keypress(function (ev) {
+            var keycode = (ev.keyCode ? ev.keyCode : ev.which);
+            if (keycode == '13') {
+                fnc.call(this, ev);
+            }
+        })
+    })
+}
 
+function callTimer(){
+timer = new Timer();
+timer.start({countdown: true, startValues: {seconds: 5}});
+    $('.values').html(timer.getTimeValues().toString());
+    timer.addEventListener('secondsUpdated', function (e) {
+        $('.values').html(timer.getTimeValues().toString());
+    });
+    timer.addEventListener('targetAchieved', function (e) {
+        $('#playTwo').animate({marginLeft: '+=100.5px'});
 
-// var timer = new Timer();
-// timer.start();
-// timer.addEventListener('secondsUpdated', function (e) {
-//     $('#basicUsage').html(timer.getTimeValues().toString());
-// });
-
+        wrongScore++ 
+        console.log('hi')
+        console.log('wrong: ' + wrongScore) 
+        newProblem()
+        $('.values').html('TIMESUP!!');
+    });
+}
 // picks random numbers and displays in DOM
 function newProblem(){
+    timer.reset()
   clearInterval(counter)
   function random(){   
-    return  Math.floor((Math.random() * 0));
+    return  Math.floor((Math.random() * 10));
     }
 
     first_number = random()
@@ -51,37 +61,23 @@ function newProblem(){
 
     document.getElementById('equationToSolve').innerHTML = first_number + "X"  + second_number + '=';
     
-
-    // timer = setTimeout(function(){ $('#playTwo').animate({marginLeft: '+=100.5px'}); }, 5000);
-
-    timer = new Timer();
-    timer.start();
-    timer.addEventListener('secondsUpdated', function (e) {
-        $('#basicUsage').html(timer.getTimeValues().toString());
-    });
-
-    // var count=0;
-
-    // var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
-
-    // function timer(){
-
-    //   console.log('test')
-    //   console.log(count)
-    //   count++;
-    //   if (count == 6)
-    //   {
-    //     $('#playTwo').animate({marginLeft: '+=100.5px'});
-    //      clearInterval(counter);
-
-    //      return;
-    //   }
-    //   document.getElementById("timer").innerHTML=count + " secs";
-    // }
-  
-
-
-
+    // timer = new Timer();
+    // timer.start({countdown: true, startValues: {seconds: 5}});
+    // $('.values').html(timer.getTimeValues().toString());
+    // timer.addEventListener('secondsUpdated', function (e) {
+    //     $('.values').html(timer.getTimeValues().toString());
+    // });
+    // timer.addEventListener('targetAchieved', function (e) {
+    //     // $('#playTwo').animate({marginLeft: '+=100.5px'});
+    //     // timer.reset()
+    //     // wrongScore++ 
+    //     // console.log('hi')
+    //     // console.log('wrong: ' + wrongScore) 
+    //     // newProblem()
+    //     $('.values').html('TIMESUP!!');
+    // });
+       
+ 
 }
 
 
@@ -89,40 +85,46 @@ function newProblem(){
 
 // takes input and checks if answer is correct
   $( "#submit" ).click(function() {
+    runnerLogic()
+    });
+  
+$("#input").enterKey(function () {
+    runnerLogic()
 
+    })
+
+
+function runnerLogic(){
     var input = $("input").val();
     answer = parseInt(input)
     console.log(answer)
     console.log(first_number)
     console.log(second_number)
+    document.getElementById('input').value = ''
 
     if(parseInt(first_number) * parseInt(second_number) == answer){
       $('#playOne').animate({marginLeft: '+=100.5px'});
-      // count= 0
-      // clearTimeout(timer)
-      timer.reset()
-      // clearInterval(counter)      
+      // timer.reset()
+      correctScore++ 
+      console.log('correct: ' + correctScore)   
       newProblem()
-
-      console.log('correct')
     }else{
       $('#playTwo').animate({marginLeft: '+=100.5px'});
-      // clearInterval(counter)
-      // clearTimeout(timer)
+    // timer.reset()
+      wrongScore++ 
+      console.log('wrong: ' + wrongScore) 
       newProblem()
-      console.log('wrong')
+
     }
 
-});
-
-  
-  
+}
 
 
-
-
-
-
+// $("#basicUsage").change(function(){
+    // console.log('gereare')
+    // var time = $("#basicUsage").val()
+    // console.log(time)
+// });
 
 
     // $('.buttons').on('click', function(){
