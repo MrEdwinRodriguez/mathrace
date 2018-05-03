@@ -1,18 +1,3 @@
-
-
-$(document).ready(function(){
-
-$("#start").click(function(){
-    callTimer()
-    newProblem()
-    document.getElementById('start').innerHTML = 're-start'
-    // callTimer()
-});
-
-
-
-   
-
 var count = 0
 var correctScore = 0
 var wrongScore= 0
@@ -20,9 +5,13 @@ var first_number
 var second_number 
 var counter
 var timer
+var selectedOption
 var wins = 0
 var losses = 0
+var level = 1
 
+
+$(document).ready(function(){
 // to use enter to submit
 $.fn.enterKey = function (fnc) {
     return this.each(function () {
@@ -35,9 +24,32 @@ $.fn.enterKey = function (fnc) {
     })
 }
 
+function starter(){
+    var selectedOption = $('#selectMultipier option:selected').text();
+    console.log(selectedOption.length)
+    console.log(selectedOption)    
+    if(selectedOption.length > 3){     
+        newProblem()
+        }
+    else{
+        selectedOption = parseInt(selectedOption)
+        newProblemRestricted(selectedOption)
+    }
+
+}
+
+
+
+$("#start").click(function(){
+    starter()
+    document.getElementById('start').innerHTML = 're-start'
+});
+
+
 function callTimer(){
-timer = new Timer();
-timer.start({countdown: true, startValues: {seconds: 5}});
+    timer = new Timer();
+    levelCountDownChecker()
+
     $('.values').html(timer.getTimeValues().toString());
     timer.addEventListener('secondsUpdated', function (e) {
         $('.values').html(timer.getTimeValues().toString());
@@ -46,27 +58,40 @@ timer.start({countdown: true, startValues: {seconds: 5}});
         $('#playTwo').animate({marginLeft: '+=100.5px'});
 
         wrongScore++ 
-        console.log('hi')
-        console.log('wrong: ' + wrongScore) 
-        newProblem()
         $('.values').html('TIMESUP!!');
     });
 }
+
+
+
+
 // picks random numbers and displays in DOM
 function newProblem(){
-    timer.reset()
-  clearInterval(counter)
-  function random(){   
-    return  Math.floor((Math.random() * 10));
+    if(timer){
+        timer.reset()
     }
 
-    first_number = random()
-    second_number = random()
+    if(level > 1){
+        callTimer()
+    }
 
-    document.getElementById('equationToSolve').innerHTML = first_number + "X"  + second_number + '=';
-    
- 
+    first_number = Math.floor((Math.random() * 10));
+    second_number = Math.floor((Math.random() * 10));
+    document.getElementById('equationToSolve').innerHTML = first_number + "X"  + second_number + '='; 
 }
+
+function newProblemRestricted(number){
+    if(timer){
+        timer.reset()
+    }
+    // clearInterval(counter)
+    first_number = number
+    second_number = Math.floor((Math.random() * 10))
+
+    document.getElementById('equationToSolve').innerHTML = first_number + "X"  + second_number + '='; 
+}
+
+
 
 
 // takes input and checks if answer is correct
@@ -74,7 +99,7 @@ function newProblem(){
     runnerLogic()
     });
   
-$("#input").enterKey(function () {
+    $("#input").enterKey(function () {
     runnerLogic()
 
     })
@@ -90,30 +115,32 @@ function runnerLogic(){
 
     if(parseInt(first_number) * parseInt(second_number) == answer){
       $('#playOne').animate({marginLeft: '+=100.5px'});
-      // timer.reset()
       correctScore++ 
       console.log('correct: ' + correctScore)  
       checkScore() 
-      // newProblem()
     }else{
       $('#playTwo').animate({marginLeft: '+=100.5px'});
-    // timer.reset()
       wrongScore++ 
       console.log('wrong: ' + wrongScore) 
       checkScore() 
-      // newProblem()
-
     }
 
 }
 
 function checkScore(){
-    if(correctScore == 15){
+    if(correctScore == 5){
         alert('you win this round')
         correctScore = 0
         wrongScore = 0
         wins ++
-        timer.stop()
+        level++
+        $('#level').empty();
+        $('#level').append(level);
+        if(timer){
+            timer.stop()
+            timer.reset()
+        }
+
         $('#winScore').empty();
         $('#winScore').append(wins);
         $('#playOne').animate({marginLeft: '0px'});
@@ -123,16 +150,51 @@ function checkScore(){
         correctScore = 0
         wrongScore = 0
         losses++
-        timer.stop()
+        if(timer){
+            timer.stop()
+            timer.reset()
+        }
         $('#loseScore').empty();
         $('#loseScore').append(losses);
         $('#playOne').animate({marginLeft: '0px'});
         $('#playTwo').animate({marginLeft: '0px'}); 
     }else{
-        newProblem()
+
+        starter()
         console.log('keep playing')
     }
 }
+
+
+function levelCountDownChecker(){
+    if(level == 2){
+        return timer.start({countdown: true, startValues: {seconds: 10}});
+    }else if(level == 3){
+        return timer.start({countdown: true, startValues: {seconds: 8}});
+    } else if(level == 4 || level == 5){
+        return timer.start({countdown: true, startValues: {seconds: 5}});
+    } else if(level > 5){
+        return timer.start({countdown: true, startValues: {seconds: 3}});;
+    } 
+}
+
+
+
+// $('#playTwo').animate({marginLeft: '+=100.5px'});
+// $("#selectMultipier").change(function(){
+//     console.log('helloc')
+//     var selectedOption = $('#selectMultipier option:selected').text();
+
+
+//     console.log(selectedOption)
+// });
+
+
+
+
+
+
+
 
 // $("#basicUsage").change(function(){
     // console.log('gereare')

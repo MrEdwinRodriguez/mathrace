@@ -38,8 +38,38 @@
   </div>
 </nav>
 <!-- </div> -->
+<!-- dropdown  for selecting multiples -->
+
+<div id='multipliers'><h4>Multipliers</h4>
+<select id = 'selectMultipier'>
+  <option value="all">1-10</option>	
+  <option value="1">1</option>
+  <option value="3">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">8</option>
+  <option value="10">10</option>
+</div>
+
+</select>
+
+<div class='container'>
+  <div class="row">
+    <div class="col-sm-8">
+      <div id='scoreWins'>Wins:<span id='winScore'>0</span></div>
+      <div id='scorelosses'>Losses: <span id= 'loseScore'>0</span></div>
+    </div>
+    <div class="col-sm-4">Level <span id='level'>1</span></div>
+  </div>
+</div>
+
 
 <div class="startGame"><button type="button" class="btn btn-info" id='start'>START!</button></div>
+
 
 
 
@@ -65,15 +95,25 @@
 </div>
 </div>
 
-<div id='scoreWins'>Wins:<span id='winScore'>0</span></div>
-<div id='scorelosses'>Losses: <span id= 'loseScore'>0</span></div>
+<!-- <div class='container'>
+  <div class="row">
+    <div class="col-8">
+      <div id='scoreWins'>Wins:<span id='winScore'>0</span></div>
+      <div id='scorelosses'>Losses: <span id= 'loseScore'>0</span></div>
+    </div>
+    <div class="col-4">col-4</div>
+  </div>
+</div>
+ -->
+<!-- <div id='scoreWins'>Wins:<span id='winScore'>0</span></div>
+<div id='scorelosses'>Losses: <span id= 'loseScore'>0</span></div> -->
 
 
 
-<div id = 'trackOne'><div><img src="assets/images/running.gif" id= 'playOne'></div></div>
-<div id = 'trackTwo'><div><img src="assets/images/running.gif" id='playTwo'></div></div>
 
 
+<div id = 'trackOne'><div><img src="assets/images/diss.gif" id= 'playOne' style="width:200px;height:200px;"></div></div>
+<div id = 'trackTwo'><div><img src="assets/images/sakura.gif" id='playTwo' style="width:200px;height:200px;"></div></div>
 
 
 
@@ -352,7 +392,7 @@
         <div class="modal-body">
           <ul>
           	<li>9 x 0 = 0</li>
-			<li>9 x 1 = 10</li>	
+			<li>9 x 1 = 9</li>	
           	<li>9 x 2 = 18</li>
 			<li>9 x 3 = 27</li>
 			<li>9 x 4 = 36</li>

@@ -54,3 +54,13 @@ body{
   color: black;
 
 }
+
+#start{
+  margin-top: 10px;
+}
+
+#multipliers {
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+}
