@@ -28,6 +28,10 @@ body{
   text-align: center;
 }
 
+#answer{
+  text-align: center
+}
+
 
 .buttons{
   background-color: red;

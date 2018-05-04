@@ -77,7 +77,7 @@ function newProblem(){
 
     first_number = Math.floor((Math.random() * 10));
     second_number = Math.floor((Math.random() * 10));
-    createLetters(first_number)
+    createBlocks(first_number)
     document.getElementById('equationToSolve').innerHTML = first_number + "X"  + second_number + '='; 
 }
 
@@ -94,9 +94,10 @@ function newProblemRestricted(number){
 
 
 
-function createLetters(number){
+function createBlocks(number){
     console.log(number)
-var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
+    $('.numbers').empty();
+    var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
    var equals = [] 
     for (x=0; x<numbers.length; x++){
         product = number * numbers[x]
@@ -106,7 +107,7 @@ var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
   for (i=0; i<equals.length; i++){
       var answerBtn = $('<button>');
-      answerBtn.addClass('btn btn-success')
+      answerBtn.addClass('btn btn-success buttons')
       answerBtn.attr('data-let', equals[i]);
       answerBtn.text(equals[i]);
       $('.numbers').append(answerBtn);
@@ -117,18 +118,30 @@ var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 // takes input and checks if answer is correct
   $( "#submit" ).click(function() {
-    runnerLogic()
+        var input = $("input").val();
+        runnerLogic(input)
     });
   
     $("#input").enterKey(function () {
-    runnerLogic()
+        var input = $("input").val();
+        runnerLogic(input)
 
     })
 
 
-function runnerLogic(){
-    var input = $("input").val();
-    answer = parseInt(input)
+    $(document).on("click", ".buttons", function(){   
+        console.log('hello there')  
+        var letter = $(this).text()
+        input= parseInt(letter)
+        runnerLogic(input)
+
+    })
+
+
+
+function runnerLogic(x){
+    // var input = $("input").val();
+    answer = parseInt(x)
     console.log(answer)
     console.log(first_number)
     console.log(second_number)
