@@ -77,6 +77,7 @@ function newProblem(){
 
     first_number = Math.floor((Math.random() * 10));
     second_number = Math.floor((Math.random() * 10));
+    createLetters(first_number)
     document.getElementById('equationToSolve').innerHTML = first_number + "X"  + second_number + '='; 
 }
 
@@ -92,6 +93,26 @@ function newProblemRestricted(number){
 }
 
 
+
+function createLetters(number){
+    console.log(number)
+var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
+   var equals = [] 
+    for (x=0; x<numbers.length; x++){
+        product = number * numbers[x]
+        equals.push(product)
+    }
+        console.log(equals)
+
+  for (i=0; i<equals.length; i++){
+      var answerBtn = $('<button>');
+      answerBtn.addClass('btn btn-success')
+      answerBtn.attr('data-let', equals[i]);
+      answerBtn.text(equals[i]);
+      $('.numbers').append(answerBtn);
+
+    }
+}
 
 
 // takes input and checks if answer is correct
