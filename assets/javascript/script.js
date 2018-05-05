@@ -75,8 +75,8 @@ function newProblem(){
         callTimer()
     }
 
-    first_number = Math.floor((Math.random() * 10));
-    second_number = Math.floor((Math.random() * 10));
+    first_number = Math.ceil((Math.random() * 10));
+    second_number = Math.ceil((Math.random() * 10));
     createBlocks(first_number)
     document.getElementById('equationToSolve').innerHTML = first_number + "X"  + second_number + '='; 
 }
@@ -97,7 +97,7 @@ function newProblemRestricted(number){
 function createBlocks(number){
     console.log(number)
     $('.numbers').empty();
-    var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
+    var numbers = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
    var equals = [] 
     for (x=0; x<numbers.length; x++){
         product = number * numbers[x]
@@ -201,13 +201,15 @@ function checkScore(){
 
 
 function levelCountDownChecker(){
-    if(level == 2){
+    if(level == 3){
+        $(".numbers").hide();
+    }else if(level == 4){
         return timer.start({countdown: true, startValues: {seconds: 10}});
-    }else if(level == 3){
+    } else if(level == 5 || level == 6){
         return timer.start({countdown: true, startValues: {seconds: 8}});
-    } else if(level == 4 || level == 5){
-        return timer.start({countdown: true, startValues: {seconds: 5}});
-    } else if(level > 5){
+    } else if(level == 7){
+        return timer.start({countdown: true, startValues: {seconds: 5}});;
+    } else if(level > 8){
         return timer.start({countdown: true, startValues: {seconds: 3}});;
     } 
 }
