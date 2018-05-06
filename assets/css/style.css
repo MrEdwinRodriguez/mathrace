@@ -1,6 +1,6 @@
 body{
 
-  background-color: white;
+  background-color: green;
 }
 
 
@@ -57,6 +57,13 @@ body{
   height: 205px;
   background-color: #990000;
 
+
+}
+
+#entireTrack{
+  position: relative;
+  padding-top: 50px;
+
 }
 
 #phraseHere{
@@ -66,6 +73,8 @@ body{
 	font-size: 20px;
   color: black;	
 }
+
+
 
 
 .startLine {
@@ -106,12 +115,10 @@ body{
 
 img {
   position: relative;
-  /*top: 285px;*/
-  /*left: 25px;*/
 }
 
 
-#playOne{
+#playOne, #playTwo{
   z-index: 3;
 }
 

@@ -148,12 +148,12 @@ function runnerLogic(x){
     document.getElementById('input').value = ''
 
     if(parseInt(first_number) * parseInt(second_number) == answer){
-      $('#playOne').animate({marginLeft: '+=100.5px'});
+      $('#playOne').animate({marginLeft: '+=125.5px'});
       correctScore++ 
       console.log('correct: ' + correctScore)  
       checkScore() 
     }else{
-      $('#playTwo').animate({marginLeft: '+=100.5px'});
+      $('#playTwo').animate({marginLeft: '+=125.5px'});
       wrongScore++ 
       console.log('wrong: ' + wrongScore) 
       checkScore() 
@@ -162,7 +162,7 @@ function runnerLogic(x){
 }
 
 function checkScore(){
-    if(correctScore == 5){
+    if(correctScore == 12){
         alert('you win this round')
         correctScore = 0
         wrongScore = 0
@@ -179,7 +179,7 @@ function checkScore(){
         $('#winScore').append(wins);
         $('#playOne').animate({marginLeft: '0px'});
         $('#playTwo').animate({marginLeft: '0px'}); 
-    }else if ( wrongScore == 15){
+    }else if ( wrongScore == 12){
         alert ('you lost this round')
         correctScore = 0
         wrongScore = 0
