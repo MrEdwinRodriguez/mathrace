@@ -94,6 +94,14 @@ body{
  /*   left: 800px;*/
 }
 
+.laneNumber{
+      position: absolute;
+    z-index: 1;
+    left: 200px;
+    top: 30px;
+
+
+}
 
 
 img {
