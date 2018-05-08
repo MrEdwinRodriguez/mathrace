@@ -86,7 +86,7 @@ $(document).ready(function() {
         }
         // clearInterval(counter)
         first_number = number
-        second_number = Math.floor((Math.random() * 10))
+        second_number = Math.ceil((Math.random() * 10))
         createBlocks(first_number)
 
         document.getElementById('equationToSolve').innerHTML = first_number + "X" + second_number + '=';
@@ -148,11 +148,19 @@ $(document).ready(function() {
         document.getElementById('input').value = ''
 
         if (parseInt(first_number) * parseInt(second_number) == answer) {
+            document.getElementById('answerSymbol').innerHTML = "<i class='fas fa-check-circle fa-3x' id='correctCheck'></i>";
+            setTimeout(function() {
+                $('#answerSymbol').empty();
+            }, 500)
             $('#playOne').animate({ marginLeft: '+=125.5px' });
             correctScore++
             console.log('correct: ' + correctScore)
             checkScore()
         } else {
+            document.getElementById('answerSymbol').innerHTML = "<i class='fas fa-times-circle fa-3x' id='wrongCheck'></i> ";
+            setTimeout(function() {
+                $('#answerSymbol').empty();
+            }, 500)
             $('#playTwo').animate({ marginLeft: '+=125.5px' });
             wrongScore++
             console.log('wrong: ' + wrongScore)
@@ -163,7 +171,7 @@ $(document).ready(function() {
 
     function checkScore() {
         if (correctScore == 5) {
-            alert('you win this round')
+            // alert('you win this round')
             correctScore = 0
             wrongScore = 0
             wins++
@@ -179,8 +187,9 @@ $(document).ready(function() {
             $('#winScore').append(wins);
             $('#playOne').animate({ marginLeft: '0px' });
             $('#playTwo').animate({ marginLeft: '0px' });
+            starter() 
         } else if (wrongScore == 12) {
-            alert('you lost this round')
+            // alert('you lost this round')
             correctScore = 0
             wrongScore = 0
             losses++
@@ -192,6 +201,7 @@ $(document).ready(function() {
             $('#loseScore').append(losses);
             $('#playOne').animate({ marginLeft: '0px' });
             $('#playTwo').animate({ marginLeft: '0px' });
+            starter() 
         } else {
 
             starter()
@@ -218,9 +228,10 @@ $(document).ready(function() {
     }
 
 
-
+// 
     function checkHowOften(){
         if(firstTime){
+        document.getElementById('dynamicMessage').innerHTML = "Looking Good!, Now it will get a little more challenging.  You will now have to input the answers yourself.";
           $("#miscButton").click();  
           firstTime = false
         }

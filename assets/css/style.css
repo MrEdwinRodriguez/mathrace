@@ -5,24 +5,17 @@ body{
 
 
 #trackOne{
-
   background-color: green;
   position: relative;
   top: 100px;
-
-
 }
 
 #trackTwo{
-
     position: relative;
     top: 100px;
     background-color: red;
 }
 
-/*.numbers {
-  margin-left: 20px
-}*/
 
 .numbers{
   text-align: center;
@@ -32,6 +25,13 @@ body{
   text-align: center
 }
 
+#correctCheck{
+  color: #9bf442;
+}
+
+#wrongCheck{
+  color: red;
+}
 
 .buttons{
   background-color: red;
@@ -41,6 +41,10 @@ body{
 }
 
 .letters{
+    text-align: center;
+  }
+
+  #answerSymbol{
     text-align: center;
   }
 
@@ -73,7 +77,6 @@ body{
 	font-size: 20px;
   color: black;	
 }
-
 
 
 
