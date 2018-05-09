@@ -45,10 +45,18 @@ $(document).ready(function() {
     });
 
 
+  // timer = new Timer();
     function callTimer() {
-        timer = new Timer();
-        levelCountDownChecker()
 
+
+        if(!timer){
+            timer = new Timer();
+        }
+       
+
+        console.log('call time being called')
+        levelCountDownChecker()
+        // timer.start({ countdown: true, startValues: { seconds: 10 } });
         $('.values').html(timer.getTimeValues().toString());
         timer.addEventListener('secondsUpdated', function(e) {
             $('.values').html(timer.getTimeValues().toString());
@@ -58,6 +66,7 @@ $(document).ready(function() {
 
             wrongScore++
             $('.values').html('TIMESUP!!');
+            callTimer()
         });
     }
 
@@ -70,14 +79,15 @@ $(document).ready(function() {
             timer.reset()
         }
 
-        if (level > 1) {
-            callTimer()
-        }
+        // if (level > 1) {
+        //     callTimer()
+        // }
 
         first_number = Math.ceil((Math.random() * 10));
         second_number = Math.ceil((Math.random() * 10));
         createBlocks(first_number)
         document.getElementById('equationToSolve').innerHTML = first_number + "X" + second_number + '=';
+        callTimer()
     }
 
     function newProblemRestricted(number) {
@@ -90,6 +100,7 @@ $(document).ready(function() {
         createBlocks(first_number)
 
         document.getElementById('equationToSolve').innerHTML = first_number + "X" + second_number + '=';
+        callTimer()
     }
 
 
@@ -157,7 +168,7 @@ $(document).ready(function() {
             console.log('correct: ' + correctScore)
             checkScore()
         } else {
-            document.getElementById('answerSymbol').innerHTML = "<i class='fas fa-times-circle fa-3x' id='wrongCheck'></i> ";
+            document.getElementById('answerSymbol').innerHTML = "<i class='fas fa-check-circle fa-3x' id='wrongCheck'></i>";
             setTimeout(function() {
                 $('#answerSymbol').empty();
             }, 500)
@@ -171,17 +182,16 @@ $(document).ready(function() {
 
     function checkScore() {
         if (correctScore == 5) {
-            // alert('you win this round')
             correctScore = 0
             wrongScore = 0
             wins++
             level++
             $('#level').empty();
             $('#level').append(level);
-            if (timer) {
-                timer.stop()
-                timer.reset()
-            }
+            // if (timer) {
+            //     timer.stop()
+            //     timer.reset()
+            // }
 
             $('#winScore').empty();
             $('#winScore').append(wins);
@@ -189,14 +199,13 @@ $(document).ready(function() {
             $('#playTwo').animate({ marginLeft: '0px' });
             starter() 
         } else if (wrongScore == 12) {
-            // alert('you lost this round')
             correctScore = 0
             wrongScore = 0
             losses++
-            if (timer) {
-                timer.stop()
-                timer.reset()
-            }
+            // if (timer) {
+            //     timer.stop()
+            //     timer.reset()
+            // }
             $('#loseScore').empty();
             $('#loseScore').append(losses);
             $('#playOne').animate({ marginLeft: '0px' });
@@ -211,15 +220,19 @@ $(document).ready(function() {
 
     var firstTime = true;
     function levelCountDownChecker() {
+        if(level == 1 || level == 2){
+            return timer.start({ countdown: true, startValues: { seconds: 8 } });
+        }
         if (level == 3) {
             $(".numbers").hide();
             $("#answer").show();
             checkHowOften()
+            return timer.start({ countdown: true, startValues: { seconds: 8 } });
     
         } else if (level == 4) {
-            return timer.start({ countdown: true, startValues: { seconds: 10 } });
+            return timer.start({ countdown: true, startValues: { seconds: 6 } });
         } else if (level == 5 || level == 6) {
-            return timer.start({ countdown: true, startValues: { seconds: 8 } });
+            return timer.start({ countdown: true, startValues: { seconds: 5 } });
         } else if (level == 7) {
             return timer.start({ countdown: true, startValues: { seconds: 5 } });;
         } else if (level > 8) {
@@ -237,6 +250,9 @@ $(document).ready(function() {
         }
  
     }
+
+
+
 // modalMessage()
 
 //     function modalMessage(){

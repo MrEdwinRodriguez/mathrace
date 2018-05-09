@@ -64,6 +64,19 @@ body{
 
 }
 
+#equationCard{
+  color: black;
+  width: 150px;
+  height: 150px;
+  background-color: : yellow;
+}
+
+#equationToSolve{
+  padding-top: 50px;
+  padding-left: 25px;
+
+}
+
 #entireTrack{
   position: relative;
   padding-top: 50px;
@@ -141,3 +154,5 @@ img {
     width: 100%;
     padding: 10px;
 }
+
+
