@@ -11,8 +11,30 @@ var losses = 0
 var level = 1
 
 
+// var iFrequency = 5000; // expressed in miliseconds
+var myInterval = 0
+
+function callMyFuntion() {
+    $(document).ready(function() {
+        $('#playTwo').animate({ marginLeft: '+=100.5px' });
+        wrongScore++
+         $("#dummyBtn").click()
+    })
+}
+
+
 $(document).ready(function() {
-    // to use enter to submit
+
+
+
+    function startLoop(iFrequency) {
+        if (myInterval > 0) clearInterval(myInterval); // stop
+        myInterval = setInterval("callMyFuntion()", iFrequency); // run
+        // wrongScore++
+        // checkScore()
+        // $("#dummyBtn").click()
+    }
+        // to use enter to submit
     $.fn.enterKey = function(fnc) {
         return this.each(function() {
             $(this).keypress(function(ev) {
@@ -24,15 +46,27 @@ $(document).ready(function() {
         })
     }
 
+
+// checkScore()
+
+    $("#dummyBtn").click(function(){
+        checkScore()
+    });
+
+
     function starter() {
         var selectedOption = $('#selectMultipier option:selected').text();
         console.log(selectedOption.length)
         console.log(selectedOption)
         if (selectedOption.length > 3) {
             newProblem()
+            var timeToCount = levelCountDownChecker()
+            console.log(timeToCount)
+            startLoop(8000)
         } else {
             selectedOption = parseInt(selectedOption)
             newProblemRestricted(selectedOption)
+            startLoop(8000)
         }
 
     }
@@ -46,16 +80,18 @@ $(document).ready(function() {
 
 
   // timer = new Timer();
+  var innerTimer = 0
     function callTimer() {
 
-
+        innerTimer++
         if(!timer){
             timer = new Timer();
         }
-       
+       console.log('coun' + innerTimer)
 
-        console.log('call time being called')
+        // console.log('call time being called')
         levelCountDownChecker()
+        // console.log(timer)
         // timer.start({ countdown: true, startValues: { seconds: 10 } });
         $('.values').html(timer.getTimeValues().toString());
         timer.addEventListener('secondsUpdated', function(e) {
@@ -66,7 +102,7 @@ $(document).ready(function() {
 
             wrongScore++
             $('.values').html('TIMESUP!!');
-            callTimer()
+            // callTimer()
         });
     }
 
@@ -87,7 +123,7 @@ $(document).ready(function() {
         second_number = Math.ceil((Math.random() * 10));
         createBlocks(first_number)
         document.getElementById('equationToSolve').innerHTML = first_number + "X" + second_number + '=';
-        callTimer()
+        // callTimer()
     }
 
     function newProblemRestricted(number) {
@@ -100,7 +136,7 @@ $(document).ready(function() {
         createBlocks(first_number)
 
         document.getElementById('equationToSolve').innerHTML = first_number + "X" + second_number + '=';
-        callTimer()
+        // callTimer()
     }
 
 
@@ -212,7 +248,7 @@ $(document).ready(function() {
             $('#playTwo').animate({ marginLeft: '0px' });
             starter() 
         } else {
-
+            console.log('ws' + wrongScore)
             starter()
             console.log('keep playing')
         }
@@ -221,22 +257,22 @@ $(document).ready(function() {
     var firstTime = true;
     function levelCountDownChecker() {
         if(level == 1 || level == 2){
-            return timer.start({ countdown: true, startValues: { seconds: 8 } });
+            return 8000
         }
         if (level == 3) {
             $(".numbers").hide();
             $("#answer").show();
             checkHowOften()
-            return timer.start({ countdown: true, startValues: { seconds: 8 } });
+            return 8000
     
         } else if (level == 4) {
-            return timer.start({ countdown: true, startValues: { seconds: 6 } });
+            return 6000
         } else if (level == 5 || level == 6) {
-            return timer.start({ countdown: true, startValues: { seconds: 5 } });
+            return 5000
         } else if (level == 7) {
-            return timer.start({ countdown: true, startValues: { seconds: 5 } });;
+            return 5000
         } else if (level > 8) {
-            return timer.start({ countdown: true, startValues: { seconds: 3 } });;
+            return 3000
         }
     }
 
@@ -250,6 +286,7 @@ $(document).ready(function() {
         }
  
     }
+
 
 
 
