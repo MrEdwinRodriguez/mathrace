@@ -15,6 +15,43 @@
 </head>
 
 <body>
+
+<div id="overlay" class='overlay' onclick="off()">
+    <nav>
+        <ul>
+            <li><a href="#">ADD</a></li>
+            <li><a href="#">SUBTRACT</a></li>
+            <li><a href="#">MULTIPLY</a></li>
+            <li><a href="#">DIVIDE</a></li>
+        </ul>
+    </nav>
+</div>
+
+<div id="overlayLogin" class='overlay' onclick="off2()">
+    <div id='holdLogin'>
+        <div class="center">
+            <form action="/action_page.php">
+                <div class="form-group">
+                    <label for="email">Email address:</label>
+                    <input type="email" class="form-control" id="email">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" class="form-control" id="pwd">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Remember me</label>
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+    <button onclick="on()">CHANGE PROBLEM TYPE</button>
+    <button onclick="on2()">LOGIN</button>
     <!-- <div class="col-xs-12 col-md-12"> -->
     <nav class="navbar navbar">
         <div class="container-fluid">

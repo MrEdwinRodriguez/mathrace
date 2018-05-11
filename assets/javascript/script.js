@@ -14,6 +14,22 @@ var level = 1
 // var iFrequency = 5000; // expressed in miliseconds
 var myInterval = 0
 
+function on() {
+    document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+    document.getElementById("overlay").style.display = "none";
+}
+
+function on2() {
+    document.getElementById("overlayLogin").style.display = "block";
+}
+
+function off2() {
+    document.getElementById("overlayLogin").style.display = "none";
+}
+
 function callMyFuntion() {
     $(document).ready(function() {
         $('#playTwo').animate({ marginLeft: '+=100.5px' });
@@ -277,7 +293,6 @@ $(document).ready(function() {
     }
 
 
-// 
     function checkHowOften(){
         if(firstTime){
         document.getElementById('dynamicMessage').innerHTML = "Looking Good!, Now it will get a little more challenging.  You will now have to input the answers yourself.";
@@ -286,130 +301,6 @@ $(document).ready(function() {
         }
  
     }
-
-
-
-
-// modalMessage()
-
-//     function modalMessage(){
-//         console.log('checking modal')
-//         var modal = document.getElementById('infoModal')
-
-//         document.getElementById("dynamicMessage").innerHTML = "Paragraph changed!";
-//         modal.style.display = "block"
-//     }
-
-    // $('#playTwo').animate({marginLeft: '+=100.5px'});
-    // $("#selectMultipier").change(function(){
-    //     console.log('helloc')
-    //     var selectedOption = $('#selectMultipier option:selected').text();
-
-
-    //     console.log(selectedOption)
-    // });
-
-
-
-
-
-
-
-
-    // $("#basicUsage").change(function(){
-    // console.log('gereare')
-    // var time = $("#basicUsage").val()
-    // console.log(time)
-    // });
-
-
-    // $('.buttons').on('click', function(){
-    //   var letter = $(this).text();
-
-    //   $(this).toggle();
-    //   console.log(letter);
-
-    // check(letter);
-
-    //function check   
-    // function check(x){
-    // var wrong = 0;
-    //   for(i=0; i<phrase.length ; i++){
-    //     if(phrase[i] == x){
-    //     hits++;
-    //     $('#playOne').animate({marginLeft: '+=100px'});
-    //     // document.getElementsByClassName('index'+i).innerHTML = x;
-    //      $('.index'+i).empty();
-    //      $('.index'+i).append(x);
-    //     // document.getElementsById("phraseHere").innerHTML = x;
-
-
-    // console.log("hits:" +  hits);
-
-    // //calls function to verify if game is over or not
-    // winCheck(hits);
-
-    //   }else
-    //     {
-
-    //     wrong++;
-    //     diff = wrong - spaces;
-    //     if(diff == counter)
-    //     {
-    //     lives--;
-    //     $('#playTwo').animate({marginLeft: '+=100.5px'});
-    //     console.log("lives" + lives);
-    //     lossCheck(lives);
-    //     }
-
-    // }
-
-
-
-    // }
-    // } 
-
-    // });// end of on click 
-
-
-    //check if you won
-    // function winCheck(correct){
-
-    //     if(correct == counter){
-    //     console.log('you win');
-    //     $("#phraseHere").empty()
-    //     $(".letters").empty()
-    //     alert('you win')
-    //     console.log(counter);
-    //     wins++;
-
-    //     createLetters();
-    //     $('#winScore').empty();
-    //     $('#winScore').append(wins);
-    //     }else{
-    //     console.log('keep playing');
-    //     }
-    // }
-
-    //check if loss
-    // function lossCheck(remain){
-    //     if(remain == 0){
-    //     console.log('you lose');
-    //     losses++;
-    //     $('#loseScore').empty();
-    //     $('#loseScore').append(losses);    
-    //     }else{
-    //     console.log('keep playing wrongs');
-    //     }
-    // }
-
-
-
-
-
-
-
-
 
 
 
