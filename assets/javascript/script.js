@@ -138,6 +138,7 @@ $(document).ready(function() {
         first_number = Math.ceil((Math.random() * 10));
         second_number = Math.ceil((Math.random() * 10));
         createBlocks(first_number)
+        responsiveVoice.speak(first_number + "times" + second_number + '=');
         document.getElementById('equationToSolve').innerHTML = first_number + "X" + second_number + '=';
         // callTimer()
     }
