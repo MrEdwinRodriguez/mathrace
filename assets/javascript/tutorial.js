@@ -18,8 +18,8 @@ $(document).ready(function() {
         second_number = Math.ceil((Math.random() * 10));
         result = first_number * second_number
 
-        responsiveVoice.speak(first_number + "times" + second_number + '=' + result);
-        document.getElementById('tutorialMain').innerHTML = first_number + "X" + second_number + '=' + result;
+        responsiveVoice.speak(first_number + "x" + second_number + '=' + result, 'US English Female');
+        document.getElementById('tutorialMain').innerHTML = first_number + " x " + second_number + ' = ' + result;
         // callTimer()
     }
 
@@ -31,11 +31,24 @@ $(document).ready(function() {
         second_number = Math.ceil((Math.random() * 10))
         result = first_number * second_number
 
-        responsiveVoice.speak(first_number + "times" + second_number + '=' + result);
-        document.getElementById('tutorialMain').innerHTML = first_number + "X" + second_number + '=' + result;
+        responsiveVoice.speak(first_number + "times" + second_number + '=' + result, 'US English Female');
+        document.getElementById('tutorialMain').innerHTML = first_number + " x " + second_number + ' = ' + result;
+        createImage()
         // counter++
         // callTimer()
     }
 
 
+function createImage(){
+
+	// var existingDiv = document.getElementById("tutorialDrawing")
+	var drawingDiv = document.createElement('div');
+	// drawingDiv.className = 'multiplier'
+	document.getElementById('tutorialDrawing').innerHTML = drawingDiv
+	// existingDiv.appendChild(drawingDiv);
+	console.log('checking image')
+}
+
+
 })
+
