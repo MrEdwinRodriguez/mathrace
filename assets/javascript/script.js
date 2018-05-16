@@ -131,29 +131,44 @@ $(document).ready(function() {
             timer.reset()
         }
 
-        // if (level > 1) {
-        //     callTimer()
-        // }
+        if (level <=4){
 
+        }
+        
+        if(level > 4){
         first_number = Math.ceil((Math.random() * 10));
         second_number = Math.ceil((Math.random() * 10));
         createBlocks(first_number)
-        responsiveVoice.speak(first_number + "times" + second_number + '=');
+        // responsiveVoice.speak(first_number + "times" + second_number + '=');
         document.getElementById('equationToSolve').innerHTML = first_number + "X" + second_number + '=';
-        // callTimer()
+ 
+    }
     }
 
     function newProblemRestricted(number) {
         if (timer) {
             timer.reset()
         }
-        // clearInterval(counter)
+
+        if (level < 4) {
+            for (i = 0; i < 10; i++) {
+                console.log('hi')
+
+                var empty = $('<div>');
+                empty.addClass("index" + i)
+                empty.addClass("indexAll")
+                $(empty).append(number + " ");
+                $('#answerSymbol').append(empty);
+            }
+        }
+
+        if (level >= 4){
         first_number = number
         second_number = Math.ceil((Math.random() * 10))
         createBlocks(first_number)
 
         document.getElementById('equationToSolve').innerHTML = first_number + "X" + second_number + '=';
-        // callTimer()
+       }
     }
 
 
